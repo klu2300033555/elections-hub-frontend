@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t gopi/voting-frontend:latest .'
+                bat 'docker build -t gopigowd/voting-frontend:latest .'
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     bat 'docker login -u %USERNAME% -p %PASSWORD%'
                 }
-                bat 'docker push gopi/voting-frontend:latest'
+                bat 'docker push gopigowd/voting-frontend:latest'
             }
         }
     }
