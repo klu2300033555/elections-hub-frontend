@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/klu2300033555/elections-hub-backend.git'
+                url: 'https://github.com/klu2300033555/elections-hub-frontend.git'
             }
         }
 
