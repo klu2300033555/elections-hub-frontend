@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-frontend
+  labels:
+    app: voting-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voting-frontend
+  template:
+    metadata:
+      labels:
+        app: voting-frontend
+    spec:
+      containers:
+        - name: voting-frontend
+          image: gopigowd/voting-frontend:latest
+          ports:
+            - containerPort: 80
