@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/klu2300033555/elections-hub-backend.git'
+            }
+        }
+
+        stage('Build WAR') {
+            steps {
+                bat 'mvn clean package'
+            }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                deploy adapters: [
+                    tomcat8(credentialsId: 'TOMCAT_CRED',
+                            path: '',
+                            url: 'http://localhost:8080')
+                ],
+                war: 'target/*.war'
+            }
+        }
+    }
+}
